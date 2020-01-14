@@ -52,7 +52,7 @@ main() {
 
   printf "${GREEN}"
   cat <<-'MULTI'
-	.
+
                          _                   _        ####
   _ __  _   _ _ __   ___| |__   ___ ___   __| | ___   #### 
  | '_ \| | | | '_ \ / __| '_ \ / __/ _ \ / _` |/ _ \  ####
@@ -63,7 +63,7 @@ main() {
 	MULTI
   printf "$RESET"
 
-  echo "${CYAN} Installing ${ORANGE}Command Line Tools${RESET}"
+  echo "${CYAN}Installing ${ORANGE}Command Line Tools${RESET}"
   xcode-select --install
 
   echo "${CYAN}Installing ${ORANGE}oh my zsh\n"
@@ -71,7 +71,7 @@ main() {
 
   # Check to see if Homebrew is installed, and install it if it is not
 	if ! command_exists brew; then
-  	echo >&2 "${CYAN}Installing ${ORANGE}Homebrew\n"
+  	echo "${CYAN}Installing ${ORANGE}Homebrew\n"
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
 
