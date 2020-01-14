@@ -63,6 +63,9 @@ main() {
 	MULTI
   printf "$RESET"
 
+	echo "${CYAN}Importing Iterm2 preferences"
+	sh -c "$(curl -is https://raw.githubusercontent.com/PunchCode/install/master/Visor.json >> ~/Library/Application\ Support/iTerm2/DynamicProfiles/)"
+
   echo "${CYAN}Installing ${ORANGE}Command Line Tools${RESET}"
   xcode-select --install
 
