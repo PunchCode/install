@@ -20,9 +20,9 @@ WHITE='\033[1;37m'
 HOMEDIR=$(eval echo "~$whoami")
 
 echo "${CYAN} ${ORANGE}Installing Command Line Tools\n"
-command -v xcode-select --install
+xcode-select --install
 echo "${CYAN}Installing ${ORANGE}oh my zsh\n"
-command -v sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # Check to see if Homebrew is installed, and install it if it is not
 command -v brew >/dev/null 2>&1 || { echo >&2 "${CYAN}Installing ${ORANGE}Homebrew\n" \ 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" }
