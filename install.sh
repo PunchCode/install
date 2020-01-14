@@ -63,7 +63,7 @@ main() {
 	MULTI
   printf "$RESET"
 
-	echo "${CYAN}Importing Iterm2 preferences"
+	echo "${CYAN}Importing Iterm2 preferences${RESET}"
 	sh -c "$(curl -is https://raw.githubusercontent.com/PunchCode/install/master/Visor.json >> ~/Library/Application\ Support/iTerm2/DynamicProfiles/Visor.json)"
 
   echo "${CYAN}Installing ${ORANGE}Command Line Tools${RESET}"
