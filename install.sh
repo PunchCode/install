@@ -69,7 +69,7 @@ main() {
   setup_color
 
   printf "${GREEN}"
-  cat <<='EOF'
+  cat <<-'EOF'
                           _                   _        
    _ __  _   _ _ __   ___| |__   ___ ___   __| | ___   ####
   | '_ \| | | | '_ \ / __| '_ \ / __/ _ \ / _` |/ _ \  ####
@@ -83,16 +83,22 @@ main() {
   xcode-select --install
   echo "${CYAN}Installing ${ORANGE}oh my zsh\n"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
   # Check to see if Homebrew is installed, and install it if it is not
   command -v brew >/dev/null 2>&1 || { echo >&2 "${CYAN}Installing ${ORANGE}Homebrew\n" \ 
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" }
+
   # Installing yarn will install node which will install npm
   echo "${CYAN}Installing ${Orange}node${WHITE}, ${ORANGE}npm${WHITE}, and ${ORANGE}yarn\n"
   command -v brew install yarn
+
   echo "${CYAN}Fixing global npm path\n"
   mkdir ~/.npm-packages
+
   npm config set prefix '~/.npm-packages'
   echo "export PATH=$HOMEDIR/.npm-packages/bin:$PATH" >> ~/.zshrc
+
   source ~/.zshrc
 }
 
+main $@
