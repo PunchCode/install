@@ -63,14 +63,17 @@ main() {
 	MULTI
   printf "$RESET"
 
-	echo "${CYAN}Importing Iterm2 preferences${RESET}"
-	sh -c "$(curl https://raw.githubusercontent.com/PunchCode/install/master/Visor.json > ~/Library/Application\ Support/iTerm2/DynamicProfiles/Visor.json)"
+	# TODO import Iterm2 preferences
+	# echo "${CYAN}Importing Iterm2 preferences${RESET}"
+	# sh -c "$(curl https://raw.githubusercontent.com/PunchCode/install/master/Visor.json > ~/Library/Application\ Support/iTerm2/DynamicProfiles/Visor.json)"
 
   echo "${CYAN}Installing ${ORANGE}Command Line Tools${RESET}"
   xcode-select --install
 
-  echo "${CYAN}Installing ${ORANGE}oh my zsh\n"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	if ! [ -d "$HOMEDIR/.oh-my-zsh" ] then
+		echo "${CYAN}Installing ${ORANGE}oh my zsh\n"
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	fi
 
   # Check to see if Homebrew is installed, and install it if it is not
 	if ! command_exists brew; then
@@ -81,16 +84,18 @@ main() {
   # Installing yarn will install node which will install npm
 	if ! command_exists yarn; then
 		echo "${CYAN}Installing ${Orange}node${WHITE}, ${ORANGE}npm${WHITE}, and ${ORANGE}yarn\n"
-		command -v brew install yarn
+		brew install yarn
 	fi
 
-  echo "${CYAN}Fixing global npm path\n"
-  mkdir ~/.npm-packages
+	if ! [ -d "$HOMEDIR/.npm-packages" ] then
+		echo "${CYAN}Fixing global npm path\n"
+		mkdir ~/.npm-packages
 
-  npm config set prefix '~/.npm-packages'
-  echo "export PATH=$HOMEDIR/.npm-packages/bin:$PATH" >> ~/.zshrc
+		npm config set prefix '~/.npm-packages'
+		echo "export PATH=$HOMEDIR/.npm-packages/bin:$PATH" >> ~/.zshrc
 
-  source ~/.zshrc
+		source ~/.zshrc
+	fi
 }
 
 main "$@"
